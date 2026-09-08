@@ -20,5 +20,12 @@
           default = pkgs.callPackage ./package.nix { };
         }
       );
+
+      nixosModules.default =
+        { config, lib, pkgs, ... }:
+        import ./module.nix {
+          inherit config lib pkgs;
+          defaultPackage = self.packages.${pkgs.stdenv.hostPlatform.system}.default;
+        };
     };
 }
