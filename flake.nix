@@ -24,7 +24,8 @@
       nixosModules.default =
         { config, lib, pkgs, ... }:
         import ./module.nix {
-          inherit config lib pkgs;
+          config = config;
+          lib = lib;
           defaultPackage = self.packages.${pkgs.stdenv.hostPlatform.system}.default;
         };
     };
