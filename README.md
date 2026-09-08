@@ -32,8 +32,9 @@ nix build .#credential-manager
 ./result/bin/Tjslp.CredentialManager --help
 ```
 
-> 程序是 `Microsoft.NET.Sdk.Web` 应用，使用自包含发布并链接了 ASP.NET Core 运行时，
-> 因此无需在宿主机上预装 .NET。
+> 程序是 `Microsoft.NET.Sdk.Web` 应用，采用框架依赖发布（`framework-dependent`），
+> 由 `buildDotnetModule` 打包时链入 ASP.NET Core 运行时（`aspnetcore_10_0`），
+> 并通过 wrapper 设置 `DOTNET_ROOT`，因此无需在宿主机上预装 .NET。
 
 ### 升级上游版本
 

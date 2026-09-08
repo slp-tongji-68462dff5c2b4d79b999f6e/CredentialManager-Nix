@@ -106,8 +106,10 @@
         EnvironmentFile = config.services.credential-manager.environmentFile;
 
         # The data directory (created/owned via StateDirectory) holds the
-        # LiteDB file.
+        # LiteDB file. Use it as the working directory so the service does not
+        # try to scan `/` for content files.
         StateDirectory = config.services.credential-manager.stateDirectory;
+        WorkingDirectory = "/var/lib/${config.services.credential-manager.stateDirectory}";
 
         Restart = "on-failure";
         RestartSec = "5s";
